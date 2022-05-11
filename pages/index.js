@@ -6,6 +6,9 @@ import {CANVAS_DRAFT_STATE, CANVAS_PUBLISHED_STATE, CanvasClient,} from "@unifor
 import {Composition, Slot} from "@uniformdev/canvas-react";
 import resolveRenderer from "../lib/resolveRenderer";
 
+import { useLivePreviewNextStaticProps } from "../hooks/useLivePreviewNextStaticProps";
+import getConfig from "next/config";
+
 // LESSON 7 - ACTIVITY 4 - START
 export async function getStaticProps({preview}) {
     // LESSON 7 - ACTIVITY 4 - END
@@ -29,7 +32,15 @@ export async function getStaticProps({preview}) {
     };
 }
 
+const { publicRuntimeConfig } = getConfig();
+const { uniform } = publicRuntimeConfig;
+
 export default function Home({composition}) {
+    useLivePreviewNextStaticProps({
+        compositionId: composition?._id,
+        projectId: uniform.projectId,
+    });
+
     return (
         <Composition data={composition} resolveRenderer={resolveRenderer}>
             <div className={styles.container}>
