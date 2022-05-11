@@ -9,6 +9,10 @@ import resolveRenderer from "../lib/resolveRenderer";
 import { useLivePreviewNextStaticProps } from "../hooks/useLivePreviewNextStaticProps";
 import getConfig from "next/config";
 
+// LESSON 8 - ACTIVITY 10 - START
+import doEnhance from "../lib/enhancerCF";
+// LESSON 8 - ACTIVITY 10 - END
+
 // LESSON 7 - ACTIVITY 4 - START
 export async function getStaticProps({preview}) {
     // LESSON 7 - ACTIVITY 4 - END
@@ -22,6 +26,10 @@ export async function getStaticProps({preview}) {
         state: preview ? CANVAS_DRAFT_STATE : CANVAS_PUBLISHED_STATE,
         // LESSON 7 - ACTIVITY 4 - END
     });
+
+    // LESSON 8 - ACTIVITY 10 - START
+    await doEnhance(composition);
+    // LESSON 8 - ACTIVITY 10 - END
 
     console.log(JSON.stringify(composition, null, 4));
 
