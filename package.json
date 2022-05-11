@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "context:manifest": "uniform context manifest download --output ./lib/context/manifest.json",
     "dev": "next dev",
     "build": "run-s context:manifest build:next",
     "build:next": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "context:manifest": "uniform context manifest download --output ./lib/context/manifest.json"
+    "lint": "next lint"
   },
   "dependencies": {
     "@uniformdev/canvas": "^16.0.0",
